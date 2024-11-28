@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/anacrolix/torrent/metainfo"
 	"goBlack/common"
+	"goBlack/pkg/arr"
 	"log"
 	"path/filepath"
 )
@@ -94,16 +95,17 @@ func getTorrentInfo(filePath string) (*Torrent, error) {
 	if err != nil {
 		return nil, err
 	}
+	infoLength := int(info.Length)
 	magnet := &common.Magnet{
 		InfoHash: infoHash,
 		Name:     info.Name,
-		Size:     info.Length,
+		Size:     infoLength,
 		Link:     mi.Magnet(&hash, &info).String(),
 	}
 	torrent := &Torrent{
 		InfoHash: infoHash,
 		Name:     info.Name,
-		Size:     info.Length,
+		Size:     infoLength,
 		Magnet:   magnet,
 		Filename: filePath,
 	}
@@ -136,12 +138,12 @@ func GetLocalCache(infohashes []string, cache *common.Cache) ([]string, map[stri
 	return infohashes, result
 }
 
-func ProcessQBitTorrent(d *DebridService, magnet *common.Magnet, arr *Arr, isSymlink bool) (*Torrent, error) {
+func ProcessTorrent(d *DebridService, magnet *common.Magnet, a *arr.Arr, isSymlink bool) (*Torrent, error) {
 	debridTorrent := &Torrent{
 		InfoHash: magnet.InfoHash,
 		Magnet:   magnet,
 		Name:     magnet.Name,
-		Arr:      arr,
+		Arr:      a,
 		Size:     magnet.Size,
 	}
 

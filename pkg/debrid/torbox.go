@@ -203,7 +203,7 @@ func (r *Torbox) CheckStatus(torrent *Torrent, isSymlink bool) (*Torrent, error)
 			break
 		} else if status == "downloading" {
 			if !r.DownloadUncached {
-				go r.DeleteTorrent(torrent)
+				go torrent.Delete()
 				return torrent, fmt.Errorf("torrent: %s not cached", torrent.Name)
 			}
 			// Break out of the loop if the torrent is downloading.

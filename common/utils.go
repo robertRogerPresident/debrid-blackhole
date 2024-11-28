@@ -23,7 +23,7 @@ import (
 type Magnet struct {
 	Name     string
 	InfoHash string
-	Size     int64
+	Size     int
 	Link     string
 }
 
@@ -42,7 +42,7 @@ func GetMagnetFromFile(file io.Reader, filePath string) (*Magnet, error) {
 		magnet := &Magnet{
 			InfoHash: infoHash,
 			Name:     info.Name,
-			Size:     info.Length,
+			Size:     int(info.Length),
 			Link:     mi.Magnet(&hash, &info).String(),
 		}
 		return magnet, nil
@@ -121,7 +121,7 @@ func OpenMagnetHttpURL(magnetLink string) (*Magnet, error) {
 	magnet := &Magnet{
 		InfoHash: infoHash,
 		Name:     info.Name,
-		Size:     info.Length,
+		Size:     int(info.Length),
 		Link:     mi.Magnet(&hash, &info).String(),
 	}
 	return magnet, nil
@@ -207,11 +207,6 @@ func processInfoHash(input string) (string, error) {
 
 	// If we get here, it's not a valid infohash and we couldn't convert it
 	return "", fmt.Errorf("invalid infohash: %s", input)
-}
-
-func NewLogger(prefix string, output *os.File) *log.Logger {
-	f := fmt.Sprintf("[%s] ", prefix)
-	return log.New(output, f, log.LstdFlags)
 }
 
 func GetInfohashFromURL(url string) (string, error) {

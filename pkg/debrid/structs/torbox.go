@@ -11,7 +11,7 @@ type TorboxAPIResponse[T any] struct {
 
 type TorBoxAvailableResponse TorboxAPIResponse[map[string]struct {
 	Name string `json:"name"`
-	Size int64  `json:"size"`
+	Size int    `json:"size"`
 	Hash string `json:"hash"`
 }]
 
@@ -27,7 +27,7 @@ type torboxInfo struct {
 	Hash            string      `json:"hash"`
 	Name            string      `json:"name"`
 	Magnet          interface{} `json:"magnet"`
-	Size            int64       `json:"size"`
+	Size            int         `json:"size"`
 	Active          bool        `json:"active"`
 	CreatedAt       time.Time   `json:"created_at"`
 	UpdatedAt       time.Time   `json:"updated_at"`
@@ -36,7 +36,7 @@ type torboxInfo struct {
 	Peers           int         `json:"peers"`
 	Ratio           int         `json:"ratio"`
 	Progress        float64     `json:"progress"`
-	DownloadSpeed   int64       `json:"download_speed"`
+	DownloadSpeed   int         `json:"download_speed"`
 	UploadSpeed     int         `json:"upload_speed"`
 	Eta             int         `json:"eta"`
 	TorrentFile     bool        `json:"torrent_file"`
@@ -47,7 +47,7 @@ type torboxInfo struct {
 		Md5          interface{} `json:"md5"`
 		Hash         string      `json:"hash"`
 		Name         string      `json:"name"`
-		Size         int64       `json:"size"`
+		Size         int         `json:"size"`
 		Zipped       bool        `json:"zipped"`
 		S3Path       string      `json:"s3_path"`
 		Infected     bool        `json:"infected"`

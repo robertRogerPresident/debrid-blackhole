@@ -74,7 +74,7 @@ type RealDebridTorrentInfo struct {
 	Filename         string  `json:"filename"`
 	OriginalFilename string  `json:"original_filename"`
 	Hash             string  `json:"hash"`
-	Bytes            int64   `json:"bytes"`
+	Bytes            int     `json:"bytes"`
 	OriginalBytes    int     `json:"original_bytes"`
 	Host             string  `json:"host"`
 	Split            int     `json:"split"`
@@ -89,7 +89,7 @@ type RealDebridTorrentInfo struct {
 	} `json:"files"`
 	Links   []string `json:"links"`
 	Ended   string   `json:"ended,omitempty"`
-	Speed   int64    `json:"speed,omitempty"`
+	Speed   int      `json:"speed,omitempty"`
 	Seeders int      `json:"seeders,omitempty"`
 }
 
@@ -97,11 +97,11 @@ type RealDebridUnrestrictResponse struct {
 	Id         string `json:"id"`
 	Filename   string `json:"filename"`
 	MimeType   string `json:"mimeType"`
-	Filesize   int64  `json:"filesize"`
+	Filesize   int    `json:"filesize"`
 	Link       string `json:"link"`
 	Host       string `json:"host"`
-	Chunks     int64  `json:"chunks"`
-	Crc        int64  `json:"crc"`
+	Chunks     int    `json:"chunks"`
+	Crc        int    `json:"crc"`
 	Download   string `json:"download"`
 	Streamable int    `json:"streamable"`
 }
