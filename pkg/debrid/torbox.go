@@ -157,7 +157,7 @@ func (r *Torbox) GetTorrent(id string) (*Torrent, error) {
 	torrent.Name = name
 	torrent.Bytes = data.Size
 	torrent.Folder = name
-	torrent.Progress = data.Progress
+	torrent.Progress = data.Progress * 100
 	torrent.Status = getStatus(data.DownloadState, data.DownloadFinished)
 	torrent.Speed = data.DownloadSpeed
 	torrent.Seeders = data.Seeds
