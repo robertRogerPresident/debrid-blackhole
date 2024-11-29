@@ -23,7 +23,7 @@ import (
 type Magnet struct {
 	Name     string
 	InfoHash string
-	Size     int
+	Size     int64
 	Link     string
 }
 
@@ -42,7 +42,7 @@ func GetMagnetFromFile(file io.Reader, filePath string) (*Magnet, error) {
 		magnet := &Magnet{
 			InfoHash: infoHash,
 			Name:     info.Name,
-			Size:     int(info.Length),
+			Size:     info.Length,
 			Link:     mi.Magnet(&hash, &info).String(),
 		}
 		return magnet, nil
@@ -121,7 +121,7 @@ func OpenMagnetHttpURL(magnetLink string) (*Magnet, error) {
 	magnet := &Magnet{
 		InfoHash: infoHash,
 		Name:     info.Name,
-		Size:     int(info.Length),
+		Size:     info.Length,
 		Link:     mi.Magnet(&hash, &info).String(),
 	}
 	return magnet, nil

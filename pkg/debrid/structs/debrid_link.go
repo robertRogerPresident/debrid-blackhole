@@ -23,18 +23,18 @@ type debridLinkTorrentInfo struct {
 	Wait           bool    `json:"wait"`
 	PeersConnected int     `json:"peersConnected"`
 	Status         int     `json:"status"`
-	TotalSize      int     `json:"totalSize"`
+	TotalSize      int64   `json:"totalSize"`
 	Files          []struct {
 		ID              string `json:"id"`
 		Name            string `json:"name"`
 		DownloadURL     string `json:"downloadUrl"`
-		Size            int    `json:"size"`
+		Size            int64  `json:"size"`
 		DownloadPercent int    `json:"downloadPercent"`
 	} `json:"files"`
 	Trackers []struct {
 		Announce string `json:"announce"`
 	} `json:"trackers"`
-	Created         int     `json:"created"`
+	Created         int64   `json:"created"`
 	DownloadPercent float64 `json:"downloadPercent"`
 	DownloadSpeed   int     `json:"downloadSpeed"`
 	UploadSpeed     int     `json:"uploadSpeed"`

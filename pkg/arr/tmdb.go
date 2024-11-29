@@ -17,7 +17,7 @@ type TMDBResponse struct {
 }
 
 func SearchTMDB(term string) (*TMDBResponse, error) {
-	resp, err := http.Get("https://api.themoviedb.org/3/search/multi?api_key=21564df127bf5aaec576d2a8975958a4&query=" + url2.QueryEscape(term))
+	resp, err := http.Get("https://api.themoviedb.org/3/search/multi?api_key=key&query=" + url2.QueryEscape(term))
 	if err != nil {
 		return nil, err
 	}

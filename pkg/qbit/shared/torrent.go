@@ -142,7 +142,7 @@ func (q *QBit) UpdateTorrentMin(t *Torrent, debridTorrent *debrid.Torrent) *Torr
 	totalSize := debridTorrent.Bytes
 	progress := cmp.Or(debridTorrent.Progress, 100)
 	progress = progress / 100.0
-	sizeCompleted := int(float64(totalSize) * progress)
+	sizeCompleted := int64(float64(totalSize) * progress)
 
 	var speed int
 	if debridTorrent.Speed != 0 {
@@ -150,7 +150,7 @@ func (q *QBit) UpdateTorrentMin(t *Torrent, debridTorrent *debrid.Torrent) *Torr
 	}
 	var eta int
 	if speed != 0 {
-		eta = (totalSize - sizeCompleted) / speed
+		eta = int(totalSize-sizeCompleted) / speed
 	}
 	t.ID = debridTorrent.Id
 	t.Name = debridTorrent.Name
@@ -163,7 +163,7 @@ func (q *QBit) UpdateTorrentMin(t *Torrent, debridTorrent *debrid.Torrent) *Torr
 	t.Uploaded = sizeCompleted
 	t.UploadedSession = sizeCompleted
 	t.AmountLeft = totalSize - sizeCompleted
-	t.Progress = float32(progress)
+	t.Progress = progress
 	t.Eta = eta
 	t.Dlspeed = speed
 	t.Upspeed = speed

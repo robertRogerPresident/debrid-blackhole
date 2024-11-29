@@ -32,8 +32,8 @@ type Torrent struct {
 	Folder           string                 `json:"folder"`
 	Filename         string                 `json:"filename"`
 	OriginalFilename string                 `json:"original_filename"`
-	Size             int                    `json:"size"`
-	Bytes            int                    `json:"bytes"` // Size of only the files that are downloaded
+	Size             int64                  `json:"size"`
+	Bytes            int64                  `json:"bytes"` // Size of only the files that are downloaded
 	Magnet           *common.Magnet         `json:"magnet"`
 	Files            []TorrentFile          `json:"files"`
 	Status           string                 `json:"status"`
@@ -80,7 +80,7 @@ func (t *Torrent) Delete() {
 type TorrentFile struct {
 	Id   string `json:"id"`
 	Name string `json:"name"`
-	Size int    `json:"size"`
+	Size int64  `json:"size"`
 	Path string `json:"path"`
 	Link string `json:"link"`
 }

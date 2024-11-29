@@ -74,8 +74,8 @@ type RealDebridTorrentInfo struct {
 	Filename         string  `json:"filename"`
 	OriginalFilename string  `json:"original_filename"`
 	Hash             string  `json:"hash"`
-	Bytes            int     `json:"bytes"`
-	OriginalBytes    int     `json:"original_bytes"`
+	Bytes            int64   `json:"bytes"`
+	OriginalBytes    int64   `json:"original_bytes"`
 	Host             string  `json:"host"`
 	Split            int     `json:"split"`
 	Progress         float64 `json:"progress"`
@@ -84,7 +84,7 @@ type RealDebridTorrentInfo struct {
 	Files            []struct {
 		ID       int    `json:"id"`
 		Path     string `json:"path"`
-		Bytes    int    `json:"bytes"`
+		Bytes    int64  `json:"bytes"`
 		Selected int    `json:"selected"`
 	} `json:"files"`
 	Links   []string `json:"links"`

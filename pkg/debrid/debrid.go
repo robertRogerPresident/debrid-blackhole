@@ -95,7 +95,7 @@ func getTorrentInfo(filePath string) (*Torrent, error) {
 	if err != nil {
 		return nil, err
 	}
-	infoLength := int(info.Length)
+	infoLength := info.Length
 	magnet := &common.Magnet{
 		InfoHash: infoHash,
 		Name:     info.Name,

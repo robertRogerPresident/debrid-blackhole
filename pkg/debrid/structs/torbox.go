@@ -27,7 +27,7 @@ type torboxInfo struct {
 	Hash            string      `json:"hash"`
 	Name            string      `json:"name"`
 	Magnet          interface{} `json:"magnet"`
-	Size            int         `json:"size"`
+	Size            int64       `json:"size"`
 	Active          bool        `json:"active"`
 	CreatedAt       time.Time   `json:"created_at"`
 	UpdatedAt       time.Time   `json:"updated_at"`
@@ -47,7 +47,7 @@ type torboxInfo struct {
 		Md5          interface{} `json:"md5"`
 		Hash         string      `json:"hash"`
 		Name         string      `json:"name"`
-		Size         int         `json:"size"`
+		Size         int64       `json:"size"`
 		Zipped       bool        `json:"zipped"`
 		S3Path       string      `json:"s3_path"`
 		Infected     bool        `json:"infected"`
