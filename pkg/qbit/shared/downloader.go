@@ -88,25 +88,12 @@ func (q *QBit) ProcessSymlink(debridTorrent *debrid.Torrent) (string, error) {
 }
 
 func (q *QBit) getTorrentPath(rclonePath string, debridTorrent *debrid.Torrent) (string, error) {
-	pathChan := make(chan string)
-	errChan := make(chan error)
-
-	go func() {
-		for {
-			torrentPath := debridTorrent.GetMountFolder(rclonePath)
-			if torrentPath != "" {
-				pathChan <- torrentPath
-				return
-			}
-			time.Sleep(time.Second)
+	for {
+		torrentPath := debridTorrent.GetMountFolder(rclonePath)
+		if torrentPath != "" {
+			return torrentPath, nil
 		}
-	}()
-
-	select {
-	case path := <-pathChan:
-		return path, nil
-	case err := <-errChan:
-		return "", err
+		time.Sleep(time.Second)
 	}
 }
 
