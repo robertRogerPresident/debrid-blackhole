@@ -161,15 +161,16 @@ func ProcessTorrent(d *DebridService, magnet *common.Magnet, a *arr.Arr, isSymli
 			}
 		}
 
-		debridTorrent, err := db.SubmitMagnet(debridTorrent)
-		if err != nil || debridTorrent.Id == "" {
+		dbt, err := db.SubmitMagnet(debridTorrent)
+		if err != nil || dbt.Id == "" {
 			logger.Printf("Error submitting magnet: %s", err)
 			continue
 		}
-		logger.Printf("Torrent: %s submitted to %s", debridTorrent.Name, db.GetName())
+		logger.Printf("Torrent: %s submitted to %s", dbt.Name, db.GetName())
 		d.lastUsed = index
-		debridTorrent.Debrid = db
-		return db.CheckStatus(debridTorrent, isSymlink)
+		dbt.Debrid = db
+		dbt.Arr = a
+		return db.CheckStatus(dbt, isSymlink)
 	}
 	return nil, fmt.Errorf("failed to process torrent")
 }
