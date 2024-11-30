@@ -108,6 +108,7 @@ func (q *QBit) ProcessFiles(torrent *Torrent, debridTorrent *debrid.Torrent, arr
 		torrentPath string
 		err         error
 	)
+	debridTorrent.Arr = arr
 	if isSymlink {
 		torrentPath, err = q.ProcessSymlink(debridTorrent)
 	} else {

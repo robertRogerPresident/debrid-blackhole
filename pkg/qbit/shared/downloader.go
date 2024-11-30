@@ -61,9 +61,6 @@ func (q *QBit) ProcessSymlink(debridTorrent *debrid.Torrent) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("failed to get torrent path: %v", err)
 	}
-	q.logger.Printf("Download Folder: %s\n", q.DownloadFolder)
-	q.logger.Printf("Torrent Path: %s\n", torrentPath)
-	q.logger.Printf("ARR Name: %s\n", debridTorrent.Arr.Name)
 	torrentSymlinkPath := filepath.Join(q.DownloadFolder, debridTorrent.Arr.Name, torrentPath) // /mnt/symlinks/{category}/MyTVShow/
 	err = os.MkdirAll(torrentSymlinkPath, os.ModePerm)
 	if err != nil {

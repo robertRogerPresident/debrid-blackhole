@@ -101,6 +101,8 @@ func (i *ImportRequest) BetaProcess(s *Server) (err error) {
 		return err
 	}
 
+	debridTorrent.Arr = i.Arr
+
 	torrentPath, err := q.ProcessSymlink(debridTorrent)
 	if err != nil {
 		return fmt.Errorf("failed to process symlink: %w", err)

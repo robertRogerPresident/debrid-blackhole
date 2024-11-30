@@ -40,13 +40,13 @@ func GetTorrentFiles(data structs.RealDebridTorrentInfo) []TorrentFile {
 			continue
 		}
 		fileId := f.ID
-		file := &TorrentFile{
+		file := TorrentFile{
 			Name: name,
 			Path: name,
 			Size: f.Bytes,
 			Id:   strconv.Itoa(fileId),
 		}
-		files = append(files, *file)
+		files = append(files, file)
 	}
 	return files
 }
